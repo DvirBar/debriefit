@@ -1,0 +1,9 @@
+{
+    "UserAlreadyExists": {
+        "msg": {
+            "en": "A user with this email already exists",
+            "he": "כבר קיים משתמש עם כתובת מייל זו"
+        },
+        "status": 400
+    }
+}

@@ -9,6 +9,10 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors())
 
+import auth from './auth/routes';
+
+app.use('/api/auth', auth)
+
 // Create and start connection
 const port: number = parseInt(<string>process.env.PORT) || 5000;
 app.listen(port, () => console.log('Server running'));
