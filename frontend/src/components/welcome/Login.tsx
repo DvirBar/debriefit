@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import useForm from '../../forms/useForm';
 import { GenericObject } from '../../interfaces';
 import { login } from '../../redux/auth/actions';
+import { getAuth } from '../../redux/auth/selectors';
 
 const Login: React.FC = () => {
     const [defaultValues, setDefaultValues] = useState<GenericObject>({
@@ -16,9 +19,8 @@ const Login: React.FC = () => {
         errors
     } = useForm(login, defaultValues)
 
-    console.log(errors);
-    console.log(values);
-    
+    const auth = useSelector(getAuth)
+
     return (
         <form onSubmit={handleSubmit} noValidate>
             <input 
@@ -26,7 +28,7 @@ const Login: React.FC = () => {
             name="email"
             value={values.email}
             onChange={handleChange}
-            placeholder='דוא"ך' />
+            placeholder='דוא"ל' />
 
             <input 
             type="password"

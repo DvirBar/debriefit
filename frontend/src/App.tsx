@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import './style/css/App.css';
 import axios from 'axios';
+import { BrowserRouter } from 'react-router-dom';
+import MainRouter from './components/routing/MainRouter';
 import { getAuth } from './redux/auth/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import Login from './components/welcome/Login';
 import { getUser } from './redux/auth/actions';
+import Default from './components/Default';
+import Welcome from './components/welcome/Welcome';
 
 axios.defaults.baseURL = 'http://10.0.0.28:5000';
 axios.defaults.headers['Content-Type'] = 'application/json';
@@ -19,10 +22,19 @@ const App = () => {
     dispatch(getUser())
   }, [])
 
+  if(!auth || auth.loading) 
+    return <div>Loading...</div>
+
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        {auth.isAuthenticated
+        ? <Default />
+        : <Welcome />
+        }
+      </div>
+    </BrowserRouter>
+
   );
 }
 

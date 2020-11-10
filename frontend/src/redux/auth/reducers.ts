@@ -14,7 +14,7 @@ import {
 const initialState: AuthState = {
     token: localStorage.getItem('token'),
     isAuthenticated: false,
-    loading: false,
+    loading: true,
     softLoad: false,
     user: null
 }
@@ -63,6 +63,7 @@ export function authReducer(
             return {
                 ...state,
                 softLoad: false,
+                isAuthenticated: true,
                 token: payload.token,
                 user: payload.user
             }

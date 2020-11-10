@@ -2,15 +2,10 @@ import express, { Request, Response, NextFunction } from 'express';
 import auth  from '../middleware/auth';
 import authAdmin  from '../middleware/authAdmin';
 import UserController from './controllers';
-import bcrypt  from 'bcryptjs';
 
 // User model
 import { User } from './interfaces';
 import Users from './User'
-
-// // Errors
-// const authMessages = require('../../messages/auth');
-// const { InvalidCredentials, UserDoesNotExist, NotAuthorizedSelf, SuccessDelete } = authMessages;
 
 const router = express.Router()
 
@@ -94,7 +89,7 @@ async (req: Request, res: Response, next: NextFunction) => {
 // @route   PUT api/auth/user/:id
 // @desc    Update user details
 // @access  Private
-router.put('/user', auth, 
+router.put('/user/:id', auth, 
 (req: Request, res: Response, next: NextFunction) => {
     const {
         email
