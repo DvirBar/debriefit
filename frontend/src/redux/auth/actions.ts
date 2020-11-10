@@ -82,6 +82,25 @@ export const login = (data: object) => (dispatch: Dispatch<AuthActionTypes>) => 
          })
 }
 
+export const register = (data: object) => (dispatch: Dispatch<AuthActionTypes>) => {
+    dispatch(softLoad())
+    const body = JSON.stringify(data)
+
+    axios.post('api/auth/register', body)
+         .then(res => {
+             dispatch({
+                type: LOGIN_SUCCESS,
+                payload: {
+                    token: res.data.token,
+                    user: res.data.user,
+                }
+            })
+         })
+         .catch(err => {
+             dispatch(authError())
+         })
+}
+
 export const logout = (): AuthActionTypes => {
     return {
         type: LOGOUT_SUCCESS

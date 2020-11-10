@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { getAuth } from '../../redux/auth/selectors';
 import Login from './Login';
+import Register from './Register';
 
-const Welcome = () => {
+const Welcome: React.FC = () => {
     const auth = useSelector(getAuth)
 
     if(auth.isAuthenticated)
@@ -14,6 +15,7 @@ const Welcome = () => {
         <div>
            Welcome
            <Login />
+           <Register />
         </div>
     )
 }

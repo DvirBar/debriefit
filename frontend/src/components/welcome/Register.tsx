@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import useForm from '../../forms/useForm';
-import { GenericObject } from '../../interfaces';
-import { login } from '../../redux/auth/actions';
-import { getAuth } from '../../redux/auth/selectors';
+import { useSelector } from 'react-redux'
+import useForm from '../../forms/useForm'
+import { GenericObject } from '../../interfaces'
+import { register } from '../../redux/auth/actions'
+import { getAuth } from '../../redux/auth/selectors'
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
     const [defaultValues, setDefaultValues] = useState<GenericObject>({
         email: '',
         password: ''
@@ -17,7 +16,7 @@ const Login: React.FC = () => {
         handleSubmit,
         values,
         errors
-    } = useForm(login, defaultValues)
+    } = useForm(register, defaultValues)
 
     return (
         <form onSubmit={handleSubmit} noValidate>
@@ -36,10 +35,10 @@ const Login: React.FC = () => {
             placeholder="סיסמה" />
 
             <button type="submit">
-                התחברות
+                הרשמה
             </button>
         </form>
     )
 }
 
-export default Login;
+export default Register
